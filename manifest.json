@@ -1,0 +1,11 @@
+{
+  "name": "Auto MMU Wifi Login",
+  "description": "Auto login when on the MMU wifi",
+  "version": "0.0.1",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": {"16": "mmu-login.png", "128": "mmu-login-128.png"}
+}
