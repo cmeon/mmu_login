@@ -3,19 +3,23 @@
 <html>
 <head>
   <title>Auto Wifi MMU Login</title>
+  <link rel="stylesheet" type="text/css" href="pure-min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-  <div>
-    <form action="https://wifi.mmu.edu.my/login.html" method="post">
-      <label for="username">Username: </label>
-      <input id="username" name="username" type="text" />
-      <label for="password">Password: </label>
-      <input id="password" name="password" type="password" />
-      <input type="submit">
+  <div class="div-center-fixed">
+    <form action="https://wifi.mmu.edu.my/login.html" method="post" class="pure-form pure-g">
+      <div class="center">
+	<fieldset class="pure-group pure-u-1">
+	  <input class="pure-input-1" id="username" name="username"type="text" placeholder="Username" required/>
+	  <input class="pure-input-1" id="password" name="password" type="password" placeholder="Password" required/>
+	</fieldset>
+	
+	<button class="pure-button pure-input-1 pure-button-primary" type="submit">Submit</button>
+      </div>
     </form>
   </div>
-
-<script src=""></script>
+  <script src=""></script>
 </body>
 </html>
