@@ -5,6 +5,7 @@
   <title>Auto Wifi MMU Login</title>
   <link rel="stylesheet" type="text/css" href="pure-min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 </head>
 
 <body>
@@ -13,19 +14,30 @@
     <div class="center">
       <img src="" width="250" height="98" alt="Auto MMU logo">
     </div>
-    <form action="https://wifi.mmu.edu.my/login.html" method="post" class="pure-form pure-g">
+    <form action="https://wifi.mmu.edu.my/login.html" method="post" class="pure-form pure-g" accept-charset="utf-8">
       <div class="center">
 	<fieldset class="pure-group pure-u-1">
 	  <input class="pure-input-1" id="username" name="username"type="text" placeholder="Username" required/>
 	  <input class="pure-input-1" id="password" name="password" type="password" placeholder="Password" required/>
 	</fieldset>
-	
-	<button class="pure-button pure-input-1 pure-button-primary" type="submit">Submit</button>
+	<div id="notification" class="pure-u-1"></div>
+	<button class="pure-button pure-input-1 pure-button-primary" type="submit">Login</button>
       </div>
     </form>
   </div>
+  
+  <!-- js-scrypt.js for cryptography -->
+  <script src="js/scrypt.js"></script>
 
-  <script src=""></script>
-
+  <!-- autocomplete.js loads the username and password on launch -->
+  <script src="js/autocomplete.js"></script>
+  
+  <!-- login.js facilitates the login process -->
+  <script src="js/login.js"></script>
+  
+  <!-- autologin.js loads user in on startup -->
+  <script src="js/autologin.js"></script>
+  
 </body>
 </html>
+
