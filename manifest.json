@@ -9,6 +9,7 @@
     }
   },
   "permissions": [
-    "https://wifi.mmu.edu.my/login.html"
+    "https://wifi.mmu.edu.my/login.html",
+    "storage"
   ]
 }

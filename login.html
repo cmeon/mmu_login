@@ -11,10 +11,11 @@
 <body>
 
   <div class="div-center-fixed">
+    <div id="storage" style="display: none;"></div>
     <div class="center">
       <img src="" width="250" height="98" alt="Auto MMU logo">
     </div>
-    <form action="https://wifi.mmu.edu.my/login.html" method="post" class="pure-form pure-g" accept-charset="utf-8">
+    <form action="https://wifi.mmu.edu.my/login.html" method="post" class="pure-form pure-g" accept-charset="utf-8" onload="autocomplete()">
       <div class="center">
 	<fieldset class="pure-group pure-u-1">
 	  <input class="pure-input-1" id="username" name="username"type="text" placeholder="Username" required/>
@@ -25,18 +26,10 @@
       </div>
     </form>
   </div>
-  
-  <!-- js-scrypt.js for cryptography -->
-  <script src="js/scrypt.js"></script>
 
-  <!-- autocomplete.js loads the username and password on launch -->
+  <script src="js/sjcl.js"></script>
   <script src="js/autocomplete.js"></script>
-  
-  <!-- login.js facilitates the login process -->
   <script src="js/login.js"></script>
-  
-  <!-- autologin.js loads user in on startup -->
-  <script src="js/autologin.js"></script>
   
 </body>
 </html>

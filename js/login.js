@@ -10,9 +10,9 @@ document.forms[0].onsubmit = function AJAXSubmit(event) {
   xhr.open(form.method, form.action, true);
 
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
+save();
   xhr.onload = function() {
-    var infoFlag = (this.responseXML.forms[0].info_flag == "undefined") ?
+    var infoFlag = (typeof(this.responseXML.forms[0].info_flag) == "undefined") ?
       -1 : this.responseXML.forms[0].info_flag.value;
     // -1 for the case when login is successful... I know, I have to change it all yeah!
     var infoMsg  = this.responseXML.forms[0].info_msg.value;
@@ -31,22 +31,27 @@ document.forms[0].onsubmit = function AJAXSubmit(event) {
 
     // Logged in
     // save the successfull username and password
-    if (infoFlag==-1 && errFlag==0) {
-      notify("success", "You are now logged in!");
-      
+    if (infoFlag==-1) {
       // save the username and password in an encrypted file
+      var storage = document.getElementById('storage');
+      if (storage == 'no data saved') {
+	save();
+      }
     }
   }
 
   xhr.responseType = "document";
   xhr.send(encodeURI(formDataString));
+
 }
 
 document.getElementById("username").onfocus = clearNotifications;
 document.getElementById("password").onfocus = clearNotifications;
 
 
+
 function notify(type, message) {
+
   clearNotifications();
   var notification = document.getElementById("notification");
   var msg = document.createTextNode(message);
@@ -54,7 +59,9 @@ function notify(type, message) {
   var style = { "fail": "red", "success": "green" };
   notification.style.color = style[type];
   return notification;
+
 }
+
 
 
 function onFocus(){
@@ -62,11 +69,27 @@ function onFocus(){
 }
 
 
+
 function clearNotifications() {
+
   var node = document.getElementById("notification");
   if (node.childNodes[0]){
     node.removeChild(node.childNodes[0]);
   }
   console.log('onfocus');
+
 }
 
+
+
+function save() {
+  console.log("save");
+  var cred = {
+    'u' : document.getElementById("username").value,
+    'p' : document.getElementById("password").value
+  };
+
+  chrome.storage.local.set({'cred': cred}), function() {
+    console.log('saved');
+  }
+}
