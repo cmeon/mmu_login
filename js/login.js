@@ -1,5 +1,7 @@
 // this function handles the submission of the form
 
+
+
 document.forms[0].onsubmit = function AJAXSubmit(event) {
   
   event.preventDefault();
@@ -10,7 +12,13 @@ document.forms[0].onsubmit = function AJAXSubmit(event) {
   xhr.open(form.method, form.action, true);
 
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-save();
+  
+  // save username and password
+  save();
+
+  // spin show spin dialog
+  spin('on');
+
   xhr.onload = function() {
     var infoFlag = (typeof(this.responseXML.forms[0].info_flag) == "undefined") ?
       -1 : this.responseXML.forms[0].info_flag.value;
@@ -73,8 +81,8 @@ function onFocus(){
 function clearNotifications() {
 
   var node = document.getElementById("notification");
-  if (node.childNodes[0]){
-    node.removeChild(node.childNodes[0]);
+  while (node.childNodes.length > 0){
+    node.removeChild(node.firstChild);
   }
   console.log('onfocus');
 
@@ -91,5 +99,35 @@ function save() {
 
   chrome.storage.local.set({'cred': cred}), function() {
     console.log('saved');
+  }
+}
+
+
+
+
+function spin(s) {
+  // turn on the spin
+  if (s=='on'){
+    var opts = {
+      lines: 5, // The number of lines to draw
+      length: 6, // The length of each line
+      width: 5, // The line thickness
+      radius: 0, // The radius of the inner circle
+      corners: 0, // Corner roundness (0..1)
+      rotate: 50, // The rotation offset
+      direction: 1, // 1: clockwise, -1: counterclockwise
+      color: '#000', // #rgb or #rrggbb or array of colors
+      speed: 1.7, // Rounds per second
+      trail: 56, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: true, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: '', // Top position relative to parent
+      left: '50%' // Left position relative to parent
+    };
+    var target = document.getElementById('notification');
+    var spinner = new Spinner(opts).spin(target);
+    console.log('spin');
   }
 }
